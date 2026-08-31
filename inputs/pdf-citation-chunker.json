@@ -1,0 +1,7 @@
+{
+  "urls": [
+    "https://www.rfc-editor.org/rfc/rfc9457.pdf"
+  ],
+  "chunkSize": 1000,
+  "overlap": 100
+}

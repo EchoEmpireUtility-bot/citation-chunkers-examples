@@ -1,0 +1,63 @@
+openapi: 3.1.0
+info:
+  title: EchoEmpire Citation Chunkers via Apify
+  version: 1.0.0
+  description: |
+    Start deterministic, page-aware citation chunking for public PDFs.
+    Use the PDF Actor for embedded-text PDFs and the OCR Actor for scanned or image-only PDFs.
+servers:
+  - url: https://api.apify.com/v2
+security:
+  - ApifyToken: []
+paths:
+  /acts/H1c9OyB0AnRf8Sy4y/runs:
+    post:
+      operationId: runPdfCitationChunker
+      summary: Convert an embedded-text PDF into citation-ready JSON chunks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ChunkInput' }
+            example:
+              urls: [https://www.rfc-editor.org/rfc/rfc9457.pdf]
+              chunkSize: 1000
+              overlap: 100
+      responses:
+        '201': { description: Apify run created }
+  /acts/50meJWqJ27Aw2QYZD/runs:
+    post:
+      operationId: runOcrCitationChunker
+      summary: OCR a scanned PDF into citation-ready JSON chunks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ChunkInput' }
+            example:
+              urls: [https://raw.githubusercontent.com/EchoEmpireUtility-bot/ocr-benchmark-fixtures/main/ocr-test-scan.pdf]
+              chunkSize: 1000
+              overlap: 100
+      responses:
+        '201': { description: Apify run created }
+components:
+  securitySchemes:
+    ApifyToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Apify API token
+  schemas:
+    ChunkInput:
+      type: object
+      required: [urls]
+      properties:
+        urls:
+          type: array
+          minItems: 1
+          items: { type: string, format: uri }
+        chunkSize:
+          type: integer
+          default: 1000
+        overlap:
+          type: integer
+          default: 100

@@ -1,0 +1,13 @@
+{
+  "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9457.pdf",
+  "documentId": "sha256:9e556f5dcbf7dd780928cfe03ec7f2080a635e1bcb41ddbeecbe8141c67d09ed",
+  "documentTitle": "RFC 9457: Problem Details for HTTP APIs",
+  "pageStart": 1,
+  "pageEnd": 1,
+  "chunkIndex": 1,
+  "chunkId": "sha256:a607fb8cdf92b3fe574ed20a9568e8bcf72e7a0c2659c898b3d9964859d094ba",
+  "extractionMethod": "pypdf",
+  "text": "RFC 9457\\nProblem Details for HTTP APIs\\nAbstract\\nThis document defines a problem detail to carry machine-readable details of errors in HTTP response content.",
+  "characterCount": 1688,
+  "estimatedTokens": 422
+}

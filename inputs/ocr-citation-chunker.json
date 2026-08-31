@@ -1,0 +1,7 @@
+{
+  "urls": [
+    "https://raw.githubusercontent.com/EchoEmpireUtility-bot/ocr-benchmark-fixtures/main/ocr-test-scan.pdf"
+  ],
+  "chunkSize": 1000,
+  "overlap": 100
+}

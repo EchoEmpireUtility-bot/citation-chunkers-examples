@@ -1,0 +1,15 @@
+{
+  "sourceUrl": "https://raw.githubusercontent.com/EchoEmpireUtility-bot/ocr-benchmark-fixtures/main/ocr-test-scan.pdf",
+  "documentId": "sha256:b4379040b1dd544cbff4013af401d2b63da05f67a109bc654d697999ae6e878a",
+  "documentTitle": "ocr-test-scan",
+  "pageStart": 1,
+  "pageEnd": 1,
+  "chunkIndex": 1,
+  "chunkId": "sha256:a54b7e2dd665bbf32ae1671ea5d3792c772a08656d164e0e4fe2cf97ffbf22d3",
+  "extractionMethod": "tesseract-ocr",
+  "text": "OCR CITATION CHUNKER\\nThis page contains no embedded PDF text.\\nIt exists only as pixels.",
+  "ocrConfidence": 95.38,
+  "ocrQualityScore": 96.19,
+  "ocrQualityTier": "high",
+  "ocrQualityFlags": []
+}
