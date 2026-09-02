@@ -1,19 +1,23 @@
 openapi: 3.1.0
 info:
   title: EchoEmpire Citation Chunkers via Apify
-  version: 1.0.0
+  version: 1.1.0
   description: |
-    Start deterministic, page-aware citation chunking for public PDFs.
-    Use the PDF Actor for embedded-text PDFs and the OCR Actor for scanned or image-only PDFs.
+    Run deterministic, page-aware citation chunking for public PDFs and receive
+    citation-ready dataset items in the same HTTP response. Use the PDF Actor for
+    embedded-text PDFs and the OCR Actor for scanned or image-only PDFs.
 servers:
   - url: https://api.apify.com/v2
 security:
   - ApifyToken: []
 paths:
-  /acts/H1c9OyB0AnRf8Sy4y/runs:
+  /actors/H1c9OyB0AnRf8Sy4y/run-sync-get-dataset-items:
     post:
       operationId: runPdfCitationChunker
-      summary: Convert an embedded-text PDF into citation-ready JSON chunks
+      summary: Convert an embedded-text PDF and return citation-ready JSON chunks
+      parameters:
+        - $ref: '#/components/parameters/Clean'
+        - $ref: '#/components/parameters/MaxTotalChargeUsd'
       requestBody:
         required: true
         content:
@@ -24,11 +28,21 @@ paths:
               chunkSize: 1000
               overlap: 100
       responses:
-        '201': { description: Apify run created }
-  /acts/50meJWqJ27Aw2QYZD/runs:
+        '201':
+          description: Citation-ready dataset items
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { type: object, additionalProperties: true }
+        '408': { description: Run exceeded the five-minute synchronous response window }
+  /actors/50meJWqJ27Aw2QYZD/run-sync-get-dataset-items:
     post:
       operationId: runOcrCitationChunker
-      summary: OCR a scanned PDF into citation-ready JSON chunks
+      summary: OCR a scanned PDF and return citation-ready JSON chunks
+      parameters:
+        - $ref: '#/components/parameters/Clean'
+        - $ref: '#/components/parameters/MaxTotalChargeUsd'
       requestBody:
         required: true
         content:
@@ -39,13 +53,31 @@ paths:
               chunkSize: 1000
               overlap: 100
       responses:
-        '201': { description: Apify run created }
+        '201':
+          description: OCR-backed citation-ready dataset items
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { type: object, additionalProperties: true }
+        '408': { description: Run exceeded the five-minute synchronous response window }
 components:
   securitySchemes:
     ApifyToken:
       type: http
       scheme: bearer
       bearerFormat: Apify API token
+  parameters:
+    Clean:
+      name: clean
+      in: query
+      description: Skip empty items and hidden fields.
+      schema: { type: boolean, default: true }
+    MaxTotalChargeUsd:
+      name: maxTotalChargeUsd
+      in: query
+      description: Buyer-controlled maximum total charge for the run.
+      schema: { type: number, minimum: 0, default: 0.05 }
   schemas:
     ChunkInput:
       type: object

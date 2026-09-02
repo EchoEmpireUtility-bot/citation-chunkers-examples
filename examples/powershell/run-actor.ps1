@@ -11,10 +11,12 @@ $actorIds = @{ pdf = "H1c9OyB0AnRf8Sy4y"; ocr = "50meJWqJ27Aw2QYZD" }
 $root = Split-Path $PSScriptRoot -Parent | Split-Path -Parent
 $inputPath = Join-Path $root "inputs\$Product-citation-chunker.json"
 $headers = @{ Authorization = "Bearer $env:APIFY_TOKEN" }
+$uri = "https://api.apify.com/v2/actors/$($actorIds[$Product])/run-sync-get-dataset-items?clean=true&maxTotalChargeUsd=0.05"
 
 Invoke-RestMethod `
-    -Uri "https://api.apify.com/v2/acts/$($actorIds[$Product])/runs" `
+    -Uri $uri `
     -Method Post `
     -Headers $headers `
     -ContentType "application/json" `
-    -InFile $inputPath | ConvertTo-Json -Depth 10
+    -InFile $inputPath `
+    -TimeoutSec 310 | ConvertTo-Json -Depth 10

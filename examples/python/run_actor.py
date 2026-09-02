@@ -1,9 +1,10 @@
-"""Start an EchoEmpire Actor and print its Apify run metadata."""
+"""Run an EchoEmpire Actor and print its citation-ready dataset items."""
 
 import json
 import os
 import sys
 from pathlib import Path
+from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 
@@ -20,13 +21,14 @@ def main() -> None:
     token = os.environ["APIFY_TOKEN"]
     root = Path(__file__).resolve().parents[2]
     payload = (root / "inputs" / f"{product}-citation-chunker.json").read_bytes()
+    query = urlencode({"clean": "true", "maxTotalChargeUsd": "0.05"})
     request = Request(
-        f"https://api.apify.com/v2/acts/{ACTORS[product]}/runs",
+        f"https://api.apify.com/v2/actors/{ACTORS[product]}/run-sync-get-dataset-items?{query}",
         data=payload,
         method="POST",
         headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
     )
-    with urlopen(request) as response:
+    with urlopen(request, timeout=310) as response:
         print(json.dumps(json.load(response), indent=2))
 
 

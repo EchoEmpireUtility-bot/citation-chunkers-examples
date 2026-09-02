@@ -16,18 +16,22 @@ Both Actors are public, use Apify pay-per-event billing, and are eligible for ag
 
 Each output record carries page provenance, a stable SHA-256-based identifier, normalized text, and source-document metadata. OCR records also carry confidence and quality fields.
 
-## Quick start
+## Quick start: input URL → JSON chunks
 
-Set a token in your shell, then run one of the examples:
+Set an Apify token, then run the PDF Actor. This request waits for the Actor and prints its dataset items directly—no run polling or second dataset request.
 
 ```sh
 export APIFY_TOKEN="your_apify_token"
-curl -X POST \
-  "https://api.apify.com/v2/acts/H1c9OyB0AnRf8Sy4y/runs" \
+curl --fail-with-body -X POST \
+  "https://api.apify.com/v2/actors/H1c9OyB0AnRf8Sy4y/run-sync-get-dataset-items?clean=true&maxTotalChargeUsd=0.05" \
   -H "Authorization: Bearer $APIFY_TOKEN" \
   -H "Content-Type: application/json" \
   --data @inputs/pdf-citation-chunker.json
 ```
+
+The example caps total run charges at **$0.05**. Raise the cap only when you intentionally submit larger work.
+
+Apify's synchronous endpoint waits for up to five minutes. Use the asynchronous `/runs` workflow for large OCR documents or any job that may exceed that limit; a synchronous HTTP timeout does not abort the underlying Actor run.
 
 See language-specific examples in [examples](examples), ready-to-copy inputs in [inputs](inputs), and representative excerpts from genuine output records in [sample-output](sample-output).
 
@@ -59,5 +63,5 @@ The direct x402 PDF flow requires a quote first; see the gateway OpenAPI for its
 examples/       curl, Python, JavaScript, and PowerShell invocation examples
 inputs/         ready-to-run Actor inputs
 sample-output/  representative excerpts from genuine output records
-openapi/        minimal invocation contract for the two Apify Actors
+openapi/        synchronous invocation contract for the two Apify Actors
 ```
