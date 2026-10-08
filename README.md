@@ -1,3 +1,5 @@
+> **Canonical source migrated on 2026-10-08:** development now belongs in [EchoEmpire-Machine-Foundry/examples/citation-chunkers](https://github.com/EchoEmpireUtility-bot/EchoEmpire-Machine-Foundry/tree/master/examples/citation-chunkers). This repository is retained for source history and existing consumer/deployment compatibility. The documentation below is its pre-cutover baseline, not a current Empire status or operating-authority source. Use the canonical repository's [STATUS.md](https://github.com/EchoEmpireUtility-bot/EchoEmpire-Machine-Foundry/blob/master/STATUS.md) and [authority map](https://github.com/EchoEmpireUtility-bot/EchoEmpire-Machine-Foundry/blob/master/empire/authority-map.json).
+
 # EchoEmpire Citation Chunkers — Integration Examples
 
 Machine-readable PDF ingestion for RAG, retrieval, search, and agents.
