@@ -37,6 +37,8 @@ Apify's synchronous endpoint waits for up to five minutes. Use the asynchronous 
 
 See language-specific examples in [examples](examples), ready-to-copy inputs in [inputs](inputs), and representative excerpts from genuine output records in [sample-output](sample-output).
 
+For a concrete public-document use case, start with the [NIST AI RMF PDF quickstart](NIST_QUICKSTART.md). It links an existing public example task and a separately verified owner-account delivery; no new run is needed just to inspect it.
+
 ## For AI agents / MCP
 
 Useful discovery terms:
