@@ -39,6 +39,8 @@ See language-specific examples in [examples](examples), ready-to-copy inputs in 
 
 For a concrete public-document use case, start with the [NIST AI RMF PDF quickstart](NIST_QUICKSTART.md). It links an existing public example task and a separately verified owner-account delivery; no new run is needed just to inspect it.
 
+To see the output used in a real downstream task, follow the [offline page-linked search example](CITATION_SEARCH.md).
+
 ## For AI agents / MCP
 
 Useful discovery terms:
