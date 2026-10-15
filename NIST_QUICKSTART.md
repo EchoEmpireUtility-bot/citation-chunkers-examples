@@ -20,3 +20,5 @@ Keep the token private. A synchronous HTTP timeout does not prove the Actor stop
 Use only successful, nonempty records. Check `text`, `sourceUrl`, `pageStart`, `pageEnd`, `documentId`, and `chunkId` before indexing. A useful output is not evidence of a customer charge or creator earnings; billing receipts must be reconciled separately.
 
 This page is a consumer-facing mirror of the reviewed canonical quickstart in private EchoEmpire source, published for self-serve discovery. It does not change Actor code, build, pricing, or example-task configuration.
+
+For a complete local search result with page citations, continue with [PDF chunks → page-linked search](CITATION_SEARCH.md). This offline step needs no additional Actor run or AI key.
